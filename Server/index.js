@@ -7,10 +7,12 @@
 const express = require('express'),
       bodyParser = require('body-parser'),
       cors = require('cors'),
-      app = express();
-
+      app = express(),
+      mongoose = require('mongoose'),
+      Comment = require('./model/comments');
 const router = require('./router');
 
+mongoose.connect("mongodb://sa:123456@ds119588.mlab.com:19588/mytasklist_chang");
 var port = 3000;
 
 //============================
