@@ -8,15 +8,37 @@ import { testAction } from '../actions/index.js';
 // })
 
 class About extends Component {
-   handleClickHello() {
+  handleClickHello() {
     this.props.testAction();
   }
+  renderList() {
+    return this.props.auth.message.map((singleMessage) => {
+      return (
+        <li
+          key={singleMessage._id}
+          onClick={() => this.props.selectUser(singleMessage)}
+        >
+          {singleMessage.author} {singleMessage.text}
+        </li>
+      )
+    })
+  }
   render() {
+    if (!this.props.auth) {
+      return (
+        <div>
+          <h4>This is the dashboard</h4>
+          <button onClick={this.handleClickHello.bind(this)}>Knock Knock </button>
+        </div>
+      );
+    }
     return (
       <div>
         <h4>This is the dashboard</h4>
         <button onClick={this.handleClickHello.bind(this)}>Knock Knock </button>
-        <h3>{this.props.auth.message}</h3>
+        <ul>
+          {this.renderList()}
+        </ul>
       </div>
     )
   }

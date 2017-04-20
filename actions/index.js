@@ -4,7 +4,7 @@ import { TEST_ACTION } from './types';
 const API_URL = 'http://localhost:3000/api';
 export function testAction() {
   return function(dispatch) {
-    axios.get(`${API_URL}/helloworld`)
+    axios.get(`${API_URL}/comments`)
     .then(response => {
       dispatch({
         type: TEST_ACTION,
